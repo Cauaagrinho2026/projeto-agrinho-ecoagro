@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gêmeo Digital - Agronegócio Paraná</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <main id="tela-boas-vindas" class="menu-inicial-container">
+        <div class="cartao-apresentacao">
+            <span class="badge-tecnologia">DIGITAL TWIN IOT</span>
+            <h1>Gêmeo Digital Rural</h1>
+            <p class="subtitulo-projeto">Simulador de Projeções e Impacto ESG - Ecossistema Paranaense</p>
+            
+            <div class="divisor-menu"></div>
+            
+            <div class="caixa-explicativa-menu">
+                <h3><i class="fa-solid fa-circle-info"></i> Diretrizes operacionais</h3>
+                <p>Monitore e projete dados biofísicos, químicos e financeiros baseados em matrizes reais de solo, clima e manejo sustentável regional.</p>
+                <ul class="lista-recursos-menu">
+                    <li><i class="fa-solid fa-check"></i> Análise de pegada de carbono real (CO2e)</li>
+                    <li><i class="fa-solid fa-check"></i> Sensoriamento óptico orbital simulado (NDVI/Térmico)</li>
+                    <li><i class="fa-solid fa-check"></i> Diagnósticos baseados nas diretrizes DERAL/EMBRAPA</li>
+                </ul>
+            </div>
+
+            <div class="divisor-menu"></div>
+            <h3>Selecione o Ecossistema Base</h3>
+            <div class="botoes-selecao-inicial">
+                <button class="btn-hub-opcao" data-escolha="agricultura">
+                    <span style="font-size: 24px;">🌱</span>
+                    <div>
+                        <strong>Produção Agrícola</strong>
+                        <p style="font-size: 11px; color: var(--text-secondary);">Grãos, silvicultura e manejo de solo</p>
+                    </div>
+                </button>
+                <button class="btn-hub-opcao" data-escolha="pecuaria">
+                    <span style="font-size: 24px;">🐂</span>
+                    <div>
+                        <strong>Pecuária Integrada</strong>
+                        <p style="font-size: 11px; color: var(--text-secondary);">Corte, avicultura, suínos e piscicultura</p>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="tela-simulador" class="estrutura-projeto" style="display: none;">
+        
+        <aside class="painel-lateral">
+            <button id="btn-voltar-menu" class="botao-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar ao Menu</button>
+            
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 18px;">Gêmeo Digital</h2>
+                <span id="txt-modo-ativo" class="tag-modo modo-agro">Agro</span>
+            </div>
+
+            <div class="menu-rolagem">
+                <div class="campo-escolha">
+                    <label for="selecao-regiao">Região Geográfica (PR)</label>
+                    <select id="selecao-regiao">
+                        <option value="norte">Norte Pioneiro</option>
+                        <option value="oeste" selected>Oeste (Polo Exportação)</option>
+                        <option value="sul">Centro-Sul (Campos Gerais)</option>
+                    </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="tipo-solo">Matriz Litológica do Solo</label>
+                    <select id="tipo-solo">
+                        <option value="terra_vermelha" selected>Latossolo Vermelho (Estruturado)</option>
+                        <option value="arenoso">Solo Arenoso (Caiuá)</option>
+                        <option value="cambissolo">Cambissolo (Pouco Profundo)</option>
+                    </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="selecao-cultura">Cultura / Atividade</label>
+                    <select id="selecao-cultura">
+                        </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="pratica-manejo">Prática de Manejo Operacional</label>
+                    <select id="pratica-manejo">
+                        </select>
+                </div>
+
+                <div id="bloco-alimentacao" class="campo-escolha" style="display: none;">
+                    <label for="tipo-alimentacao">Matriz Alimentar / Ração</label>
+                    <select id="tipo-alimentacao">
+                        </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label id="label-area" for="tamanho-area">Tamanho da Área</label>
+                    <input type="number" id="tamanho-area" value="50" min="1">
+                </div>
+
+                <div id="bloco-cabecas" class="campo-escolha" style="display: none;">
+                    <label id="label-cabecas" for="quantidade-cabecas">Lotação Animal</label>
+                    <input type="number" id="quantidade-cabecas" value="100" min="1">
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="selecao-ciclo-padrao">Intensificação do Ciclo</label>
+                    <select id="selecao-ciclo-padrao">
+                        <option value="padrao" selected>Ciclo Padrão Recomendado</option>
+                        <option value="intensivo">Ciclo Técnico Intensivo (-Tempo)</option>
+                        <option value="estendido">Ciclo Estendido Biofísico</option>
+                    </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="clima-dia">Variável Climática Projetada</label>
+                    <select id="clima-dia">
+                        <option value="regular" selected>Precipitação Regular (Ideal)</option>
+                        <option value="seco">Estiagem Prolongada (Seca)</option>
+                        <option value="geada">Alerta de Geada Negra</option>
+                    </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="matriz-energia">Matriz Energética da Propriedade</label>
+                    <select id="matriz-energia">
+                        <option value="rede" selected>Rede Elétrica Padrão</option>
+                        <option value="solar">Geração Própria Fotovoltaica</option>
+                    </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="tipo-frota">Matriz Energética da Frota</label>
+                    <select id="tipo-frota">
+                        <option value="diesel" selected>Combustão Fóssil (Diesel)</option>
+                        <option value="eletrico">Maquinário Elétrico / Biometano</option>
+                    </select>
+                </div>
+
+                <div class="campo-escolha">
+                    <label for="tempo-simulacao">Horizonte Temporal Projetado</label>
+                    <select id="tempo-simulacao">
+                        </select>
+                </div>
+            </div>
+
+            <button id="btn-simular" class="botao-principal" style="margin-bottom: 10px;">PROJETAR GÊMEO DIGITAL</button>
+            <button id="btn-reset" class="botao-secundario botao-limpar" style="width: 100%;">LIMPAR MATRIZ</button>
+        </aside>
+
+        <main class="tela-principal">
+            <header class="barra-navegacao" style="display: flex; justify-content: space-between; align-items: center; gap: 15px;">
+                <div>
+                    <h2 id="txt-render-setor" style="font-family: 'Space Grotesk', sans-serif;">MONITORAMENTO</h2>
+                    <p id="info-ciclo-padrao" style="font-size: 12px; color: var(--text-secondary);">⏱️ Ciclo Exigido: --</p>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="display: flex; gap: 5px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 4px; border: 1px solid var(--glass-border);">
+                        <button id="btn-diminuir-fonte" style="padding: 4px 10px; background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 12px; font-weight: bold;" title="Diminuir Fonte">A-</button>
+                        <button id="btn-aumentar-fonte" style="padding: 4px 10px; background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 12px; font-weight: bold;" title="Aumentar Fonte">A+</button>
+                        <button id="btn-alternar-contraste" style="padding: 4px 10px; background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 12px; border-left: 1px solid var(--glass-border);" title="Alternar Contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <label for="filtro-hud-visao" style="font-size: 11px; text-transform: uppercase; color: var(--text-secondary); white-space: nowrap;">Filtro Óptico:</label>
+                        <select id="filtro-hud-visao" style="width: auto; padding: 6px 12px;">
+                            <option value="normal" selected>Visão Natural (Real)</option>
+                            <option value="ndvi">Espectro de Clorofila (NDVI)</option>
+                            <option value="termico">Radiometria Térmica</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <div class="faixa-recorde">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <h4>Tendência de Preço Atual:</h4>
+                        <p id="txt-variacao-mercado" class="texto-laranja">---</p>
+                    </div>
+                    <div>
+                        <h4>Telemetria da Frota:</h4>
+                        <p id="txt-telemetria-frota" class="texto-laranja">---</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grade-central">
+                <div class="caixa-maquete">
+                    <span class="tag-render-setor">MAQUETE DINÂMICA 3D IOT</span>
+                    
+                    <div id="imagem-fazenda-bg" class="imagem-fazenda"></div>
+                    <div class="filtro-clima"></div>
+
+                    <div id="hud-centro-saude" class="hud-saude-centro" style="display: none;">
+                        <span id="txt-label-vida">Saúde Biofísica do Solo</span>
+                        <h2 id="txt-hud-porcentagem">0%</h2>
+                    </div>
+
+                    <div class="legendas-maquete">
+                        <div class="avatar-trabalhador">Status: <span id="txt-status-biologico" style="color:#f59e0b; margin-left:4px;">Aguardando...</span></div>
+                    </div>
+                </div>
+
+                <div class="caixa-terminal" style="display: flex; flex-direction: column;">
+                    <span style="font-weight: bold; margin-bottom: 5px; color: #a855f7; font-family: 'Space Grotesk', sans-serif;">TELEMETRIA TERMINAL:</span>
+                    <div id="terminal-linhas" style="flex-grow: 1; overflow-y: auto; white-space: pre-wrap; line-height: 1.4;">
+                        > Aguardando inicialização do ecossistema...
+                    </div>
+                </div>
+            </div>
+
+            <div class="grade-metricas">
+                <div class="card-metrica">
+                    <div class="categoria-metrica">Investimento Estimado</div>
+                    <h3 id="txt-investimento">R$ 0</h3>
+                </div>
+                <div class="card-metrica">
+                    <div class="categoria-metrica">Receita Bruta Projetada</div>
+                    <h3 id="txt-renda-bruta">R$ 0</h3>
+                </div>
+                <div class="card-metrica">
+                    <div class="categoria-metrica">Superávit Líquido (Lucro)</div>
+                    <h3 id="txt-lucro">R$ 0,00</h3>
+                </div>
+                <div class="card-metrica">
+                    <div class="categoria-metrica">Balanço de Carbono ESG</div>
+                    <h3 id="txt-carbono">0 kg CO2e</h3>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="card-metrica bloco-verde">
+                    <div class="categoria-metrica">Índice Nutritivo / Capacidade Reprodutiva</div>
+                    <span id="txt-solo" style="font-weight: bold;">0%</span>
+                    <div class="fundo-barra-vida">
+                        <div id="progresso-solo" class="barra-enchimento"></div>
+                    </div>
+                </div>
+                <div class="card-metrica bloco-vermelho">
+                    <div class="categoria-metrica">Degradação Química / Impacto de Lixiviação</div>
+                    <span id="txt-quimico" style="font-weight: bold;">0%</span>
+                    <div class="fundo-barra-vida">
+                        <div id="progresso-quimico" class="barra-enchimento"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
